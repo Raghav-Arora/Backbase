@@ -22,12 +22,10 @@ class TestPages(unittest.TestCase):
         page = HomePage(self.driver)
         page.click_add_computer()
         addcomputerpage = AddComputer(self.driver)
-        #print "1 -" + addcomputerpage.get_url()
-        #print addcomputerpage.get_title()
-        print addcomputerpage.get_status()
-        #print page.get_title()
-        print "2 -" + page.get_url()
-        #addcomputerpage.click_addbutton()
+        addcomputerpage.check_page_loaded()
+        print addcomputerpage.get_url()
+        addcomputerpage.enter_computer_name("A1")
+
 
 
 
