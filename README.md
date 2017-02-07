@@ -8,4 +8,4 @@ The code is written in Python and is using the Page Object Model to navigate aro
 The automated tests are indicated within the spreadsheet under the Automated column with a 'Y'. In the next column are the name of the tests to cross reference against testCases.py
 
 The first tab within the spreadsheet contains some brief notes and stats.
-
+There is a third hidden tab ('Data') but it just contains the values (Pass/Fail/Not Tested)
