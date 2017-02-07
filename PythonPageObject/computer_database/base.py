@@ -1,11 +1,10 @@
-from selenium import webdriver
 import urllib
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 
 # This Base class is serving basic attributes for every single inherited from Page class
 
+
 class Page(object):
+
     def __init__(self, driver, base_url="http://computer-database.herokuapp.com/computers"):
         self.base_url = base_url
         self.driver = driver
