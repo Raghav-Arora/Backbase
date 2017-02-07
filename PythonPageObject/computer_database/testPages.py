@@ -119,7 +119,7 @@ class TestPages(unittest.TestCase):
         self.assertFalse("Computers database" in self.driver.page_source)
 
     def tearDown(self):
-        self.driver.close()
+        self.driver.quit()
 
 if __name__ == "__main__":
     suite = unittest.TestLoader().loadTestsFromTestCase(TestPages)
