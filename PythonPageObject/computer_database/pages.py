@@ -1,8 +1,5 @@
 from base import Page
 from selenium.webdriver.support.ui import Select
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
 from locators import *
 
 
@@ -33,9 +30,11 @@ class HomePage(Page):
         url = url.get_attribute('href').split('/')[-1]
         return url
 
-    def wait_for_element(self):
-        wait = WebDriverWait(driver, 10)
-        element = wait.until(EC.alert_is_present()
+    def get_search_result(self):
+        url = self.driver.find_element(*HomePageLocators.SEARCH_RESULT)
+        url = url.get_attribute('text')
+        return url
+
 
 class AddComputer(Page):
     def check_page_loaded(self):
@@ -78,4 +77,3 @@ class AddComputer(Page):
         self.enter_discontinued(DISCONTINUED_TEXTFIELD)
         self.select_company(value)
         self.click_addbutton()
-

@@ -9,8 +9,7 @@ class HomePageLocators(object):
     SEARCH_BUTTON = (By.ID, 'searchsubmit')
     SEARCH_RESULT = (By.CSS_SELECTOR, 'table td > a')
     ADD_BUTTON = (By.ID, 'add')
-    SUCCESS_MESSAGE = (By.CSS_SELECTOR, '.alert-message.warning')
-
+    SUCCESS_MESSAGE = (By.CSS_SELECTOR, '.alert-message')
 
 
 class AddLocators(object):

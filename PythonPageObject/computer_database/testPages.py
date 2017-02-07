@@ -1,12 +1,14 @@
 import unittest
 from pages import *
 from testCases import *
+from selenium import webdriver
 
 
 class TestPages(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Firefox()
+        self.driver.implicitly_wait(10)
         self.driver.get("http://computer-database.herokuapp.com/computers")
 
     def test_TC01_page_load(self):
@@ -19,19 +21,18 @@ class TestPages(unittest.TestCase):
         print "\n" + str(test_cases(1))
         page = HomePage(self.driver)
         page.click_add_computer()
-        computerDetails = AddComputer(self.driver)
-        self.assertTrue(computerDetails.check_page_loaded)
-        computerDetails.get_status()
-        computerDetails.add_details("Automated Test Computer", "2016-01-01", "2017-02-01", "Canon")
+        computer_details = AddComputer(self.driver)
+        self.assertTrue(computer_details.check_page_loaded)
+        computer_details.add_details("Automated Test Computer", "2016-01-01", "2017-02-01", "Canon")
         assert page.success_message_is_displayed()
 
     def test_TC03_add_computer_via_direct_link(self):
         print "\n" + str(test_cases(2))
         page = HomePage(self.driver)
         page.open("/new")
-        computerDetails = AddComputer(self.driver)
-        self.assertTrue(computerDetails.check_page_loaded)
-        computerDetails.add_details("Automated Test Computer via Direct Link", "2000-01-01", "2017-02-02", "Sony")
+        computer_details = AddComputer(self.driver)
+        self.assertTrue(computer_details.check_page_loaded)
+        computer_details.add_details("Automated Test Computer via Direct Link", "2000-01-01", "2017-02-02", "Sony")
         assert page.success_message_is_displayed()
 
     def test_TC04_invalid_inputs_add_computer(self):
@@ -48,18 +49,18 @@ class TestPages(unittest.TestCase):
             page.get_status()
             page.check_page_loaded()
             page.click_add_computer()
-            computerDetails = AddComputer(self.driver)
-            computerDetails.get_status()
-            self.assertTrue(computerDetails.check_page_loaded)
-            computerDetails.add_details(name, "2016-01-01", "2017-02-01", "Canon")
-            self.assertTrue(page.get_status())
-            #assert page.success_message_is_displayed()
+            computer_details = AddComputer(self.driver)
+            self.assertTrue(computer_details.check_page_loaded)
+            computer_details.add_details(name, "2016-01-01", "2017-02-01", "Canon")
+            assert page.success_message_is_displayed()
 
     def test_TC05_filter_search(self):
         print "\n" + str(test_cases(4))
         page = HomePage(self.driver)
-        search_text = page.search_computer("Automated")
-        self.assertTrue(search_text in self.driver.page_source)
+        page.search_computer("Automated")
+        page.get_status()
+        search_result = page.get_search_result()
+        self.assertTrue(search_result in self.driver.page_source)
 
     def test_TC06_filter_search_via_direct_link(self):
         print "\n" + str(test_cases(5))
@@ -72,11 +73,10 @@ class TestPages(unittest.TestCase):
         page = HomePage(self.driver)
         page.search_computer("Automated")
         page.click_link("Automated Test Computer")
-        computerDetails = AddComputer(self.driver)
-        self.assertTrue(computerDetails.check_page_loaded)
-        computerDetails.select_company("Apple Inc.")
-        computerDetails.click_savebutton()
-        page.get_status()
+        computer_details = AddComputer(self.driver)
+        self.assertTrue(computer_details.check_page_loaded)
+        computer_details.select_company("Apple Inc.")
+        computer_details.click_savebutton()
         assert page.success_message_is_displayed()
 
     def test_TC08_edit_computer_via_direct_link(self):
@@ -85,12 +85,11 @@ class TestPages(unittest.TestCase):
         page.search_computer("Automated")
         value = page.get_computer_value()
         page.open("/" + value)
-        computerDetails = AddComputer(self.driver)
-        self.assertTrue(computerDetails.check_page_loaded)
-        clear_date = computerDetails.find_element(*AddLocators.DISCONTINUED_TEXTFIELD)
+        computer_details = AddComputer(self.driver)
+        self.assertTrue(computer_details.check_page_loaded)
+        clear_date = computer_details.find_element(*AddLocators.DISCONTINUED_TEXTFIELD)
         clear_date.clear()
-        computerDetails.click_savebutton()
-        page.get_status()
+        computer_details.click_savebutton()
         assert page.success_message_is_displayed()
 
     def test_TC09_edit_computer_via_direct_link_non_existent(self):
@@ -104,10 +103,9 @@ class TestPages(unittest.TestCase):
         page = HomePage(self.driver)
         page.search_computer("Automated")
         page.click_link("Automated Test Computer")
-        computerDetails = AddComputer(self.driver)
-        self.assertTrue(computerDetails.check_page_loaded)
-        computerDetails.click_delete()
-        page.get_status()
+        computer_details = AddComputer(self.driver)
+        self.assertTrue(computer_details.check_page_loaded)
+        computer_details.click_delete()
         assert page.success_message_is_displayed()
 
     def test_TC11_delete_computer_via_direct_link(self):
