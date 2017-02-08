@@ -3,6 +3,9 @@ from pages import *
 from testCases import *
 from selenium import webdriver
 
+# This page is where the Test Cases are defined that match against the Automated Tests marked Y in the Test Script
+# Note that other web drivers are potentially available such as webdriver.Chrome(), webdriver.IE, webdriver.Safari()
+
 
 class TestPages(unittest.TestCase):
 

@@ -1,7 +1,6 @@
-# -*- coding: utf8 -*-
-# we should add test cases here because we can miss some cases while writing automation code or
-
-# for maintainability, we can separate web test cases by page name but I just listed every case in same array
+# Test case objectives are defined here
+# For easy maintainability, the testCases could be split into separate arrays.(Create, Read, Update, Delete).
+# For this assignment, the test case objectives were put in one array.
 
 def test_cases(number):
     return testCases[number]

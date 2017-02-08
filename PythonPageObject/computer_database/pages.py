@@ -2,7 +2,7 @@ from base import Page
 from selenium.webdriver.support.ui import Select
 from locators import *
 
-
+# Each page is modelled here with functions that are specific for that page.
 
 class HomePage(Page):
 

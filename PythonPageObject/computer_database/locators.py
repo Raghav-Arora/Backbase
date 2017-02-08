@@ -1,6 +1,7 @@
 from selenium.webdriver.common.by import By
 
 # Maintainability we can separate web objects by page name
+# Locators for each page are defined here.
 
 
 class HomePageLocators(object):
