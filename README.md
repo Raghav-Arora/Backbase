@@ -11,7 +11,7 @@ The first tab within the spreadsheet contains some brief notes and stats.
 There is a third hidden tab ('Data') but it just contains the values (Pass/Fail/Not Tested)
 
 
-Edit: Tests submitted run on the UI Level, however could be improved (more stable) could also do it using the following code for adding computers/editing the computer entry. Will not get the success message so assertion would have to be on the presence of the text within the table.
+Edit: Tests submitted run on the UI Level, however could be improved (more stable) by using the following code for adding computers/editing the computer entry. Will not get the success message so assertion would have to be on the presence of the text within the table.
 
 ```python
 import requests
