@@ -13,13 +13,13 @@ There is a third hidden tab ('Data') but it just contains the values (Pass/Fail/
 
 Edit: Tests submitted run on the UI Level, however could be improved (more stable) could also do it using the following code for adding computers/editing the computer entry. Will not get the success message so assertion would have to be on the presence of the text within the table.
 
-
+```python
 import requests
 
 def add_computer_non_UI_Level():
     headers = {'User-Agent': 'Mozilla/5.0'}
-    payload = {'company':'5','discontinued':'','introduced':'2017-01-01','name':'Computer edited using requests Library - More stable than testing on the UI level'}
+    payload = {'company':'5','discontinued':'','introduced':'2017-01-01','name':'Computer added using requests Library - More stable than testing on the UI level'}
 
     session = requests.Session()
     return session.post('http://computer-database.herokuapp.com/computers/new',headers=headers,data=payload)
-
+```
